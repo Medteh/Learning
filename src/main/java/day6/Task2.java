@@ -3,6 +3,7 @@ package day6;
 public class Task2 {
     public static void main(String[] args) {
         Airplane boeing = new Airplane("Boeing", 2003, 35, 350);
+        System.out.println(boeing);
         boeing.setYear(1999);
         boeing.setLength(40);
         boeing.fillUp(200);
@@ -50,11 +51,10 @@ class Airplane {
     }
 
     void info() {
-        System.out.println("Manufacturer " + manufacturer+"\n" + "Year of production " + year +"\n"+ "Length " + length + "\n"+"Weight " + weight +"\n"+ "Fuel " + fuel);
+        System.out.println("Manufacturer " + manufacturer + "\n" + "Year of production " + year + "\n" + "Length " + length + "\n" + "Weight " + weight + "\n" + "Fuel " + fuel);
     }
 
-    public int fillUp(int n) {
-        this.fuel = n;
-        return fuel;
+    public void fillUp(int n) {
+        this.fuel = this.fuel + n;
     }
 }
