@@ -6,11 +6,15 @@ import java.util.List;
 public class task2 {
     public static void main(String[] args) {
         List<Integer> evenNumbers = new ArrayList<>();
-        for (int i = 0; i <= 350; i++) {
-            if ((i % 2 == 0 && i <= 30) || (i % 2 == 0 && i >= 300))
-                evenNumbers.add(i);
-        }
+        fillingEvenNumbers(0, 30, evenNumbers);
+        fillingEvenNumbers(300, 350, evenNumbers);
         System.out.println(evenNumbers);
+    }
 
+    public static List<Integer> fillingEvenNumbers( int from, int to, List<Integer> list) {
+        for (int i = from; i <= to; i++) {
+            if (i % 2 ==0) list.add(i);
+        }
+        return list;
     }
 }
