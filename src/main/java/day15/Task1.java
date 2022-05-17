@@ -53,7 +53,6 @@ public class Task1 {
         scanner.close();
     }
 
-
     public static void main(String[] args)  {
         try {
             csvSortToTxtFile(new File("D:\\JavaMarathon2021\\JavaMarathon2021\\src\\main\\resources\\shoes.csv"),
