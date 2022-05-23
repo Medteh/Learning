@@ -24,30 +24,28 @@ public class Human {
                 '}';
     }
 
-    public static List<Human> parseFileToObjList(File file) throws FileNotFoundException {
-        Scanner scanner = new Scanner(file);
-        List<Human> human = new ArrayList<>();
-        List<String> list = new ArrayList<>();
+    public static List<Human> parseFileToObjList() throws FileNotFoundException {
+        File file = new File ("people");
+        try {
+            Scanner scanner = new Scanner(file);
+            List<Human> human = new ArrayList<>();
 
-        while (scanner.hasNextLine()) {
-            list.add(scanner.nextLine());
-        }
+            while (scanner.hasNextLine()) {
+            String line = scanner.nextLine();
+            String[] currentLine = line.split(" ");
 
-        for (String listHuman: list) {
-            String[] instanceHuman = listHuman.split(" ");
-            String name = instanceHuman[0];
-            int age = Integer.parseInt(instanceHuman[1]);
-            if (age < 0) {
-                try {
-                    throw new ConcurrentModificationException();
-                } catch (ConcurrentModificationException e) {
-                    System.out.println("Incorrect file input");
-                    human.clear();
-                    break;
-                }
+            if (Integer.parseInt(currentLine[1]) < 0)
+                throw new ConcurrentModificationException("Incorrect file input");
+            Human currentHuman = new Human (currentLine[0], Integer.parseInt(currentLine[1]));
+            human.add(currentHuman);
             }
-            human.add(new Human(name,age));
+            return human;
+
+        } catch (ConcurrentModificationException e) {
+            System.out.println(e.getMessage());
+        } catch (FileNotFoundException e) {
+            System.out.println("File is not found");
         }
-        return human;
+        return null;
     }
 }
